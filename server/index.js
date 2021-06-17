@@ -1,14 +1,17 @@
 const { ApolloServer, gql } = require('apollo-server');
 const typeDefs = require('./api/typedefs');
 const resolvers = require('./api/resolvers');
-const TestSource = require('./api/datasources/test-source');
+const RobotAPI = require('./api/datasources/RobotAPI');
+const generator = require('./api/data/generate');
+
+generator.generateAndAdd(5, 50);
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   dataSources: () => {
     return {
-      testSource: new TestSource(),
+      robotAPI: new RobotAPI(),
     };
   },
 });
