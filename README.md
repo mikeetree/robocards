@@ -9,6 +9,43 @@
 
 ## GraphQL API
 
+Example query:
+```graphql
+query getSomeBots {
+  robots {
+    name
+    image
+    level
+    health
+    attacks {
+      name
+    }
+  }
+}
+```
+Response:
+```json
+{
+  "data": {
+    "robots": [
+      {
+        "name": "Frenzied Boomdroid",
+        "image": "https://robohash.org/4a895391-e6f6-4b75-8106-6eabbc203522.png?bgset=bg2&set=set1",
+        "level": 2,
+        "health": 100,
+        "attacks": [
+          {
+            "name": "Overpowered Vibro-Attack"
+          },
+          {
+            "name": "Telescopic Robotic Arm Smash"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 ### Types
 - `Robot`
   - `id: ID` - an id
