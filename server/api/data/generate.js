@@ -146,12 +146,12 @@ function generateAttackDamage(id, level) {
 function generateAttacks(id, level) {
   const rng = new seedrandom(id);
   const availableAttacks = getAttacks().filter(e => e.level <= level);
-  const attacks = [getRandomInArray(rng(), availableAttacks)];
+  const attacks = [getRandomInArray(rng(), availableAttacks).id];
 
   for (let i = 0; i < level - 1; i++) {
     if (rng() < 1 - i * .4) {
       const newAttack = getRandomInArray(rng(), availableAttacks.filter(e => !attacks.find(a => a.id === e.id)));
-      if (newAttack) attacks.push(newAttack);
+      if (newAttack) attacks.push(newAttack.id);
     }
   }
 
@@ -223,10 +223,7 @@ function printAllRobots() {
   }
 }
 
-generateAndAdd(50, 500);
-
-if (process.argv[2]) {
-  printRobot(generateRobot(process.argv[2]));
-} else {
-  printAllRobots();
-}
+module.exports = {
+  generateRobot,
+  generateAndAdd,
+};
