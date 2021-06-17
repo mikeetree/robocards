@@ -2,11 +2,30 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query {
-    tests: [Test]!
+    robots: [Robot]
+    attacks: [Attack]
   }
 
-  type Test {
-    msg: String!
+  type Mutation {
+    addRobot(seed: String): Robot 
+  }
+
+  type Robot {
+    id: ID!
+    seed: String!
+    name: String!
+    image: String!
+    level: Int!
+    health: Int!
+    attacks: [Attack]!
+  }
+
+  type Attack {
+    id: ID!
+    seed: String!
+    name: String!
+    level: Int!
+    damage: Int!
   }
 `;
 
