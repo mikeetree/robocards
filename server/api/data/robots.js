@@ -10,6 +10,7 @@ function getRobots() {
 
 function addRobot(robot) {
   robots.push(robot);
+  return robot;
 }
 
 module.exports = {
